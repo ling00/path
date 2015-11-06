@@ -12,19 +12,10 @@ public class runServer {
 		// TODO Auto-generated method stub
 
 		MyServer server=new MyServer(8000);
-		
-		
-		while (true){
-		
-			server.sendMessageToRpi("Hi PC! I am Rpi!  ");
-			String pcResponse=server.getMessageFromRpi();
-			if(pcResponse!=null){
-				System.out.println("PC:");
-				System.out.println(pcResponse);
-			}
-			
-		}
-		
+		int count =0;
+		String close="end";
+		server.sendMessageToRpi("start");	
+		server.sendMessageToRpi(close);
 		
 	}
 

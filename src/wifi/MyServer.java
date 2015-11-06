@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -28,24 +29,24 @@ public class MyServer {
 		socket=socketServer.accept();
 		this.inputStream=new InputStreamReader(socket.getInputStream());
 		this.messagFromPC=new BufferedReader(inputStream);
-		this.messageToPC=new PrintStream(socket.getOutputStream());
-		System.out.println("aa"+socket.getLocalAddress());
+		this.messageToPC=new  PrintStream(socket.getOutputStream());
+	
 	
 	}
 
 	public void sendMessageToRpi(String message){
 		messageToPC.println(message);
-		System.out.println("Sending "+message+" ...");
+		System.out.println("Sending "+message);
 	}
 	
 	public String getMessageFromRpi(){
 		try {
 			String message=messagFromPC.readLine();
-			System.out.println("Received messsge "+message+" ...");
+			System.out.println("Received messsge "+message);
 			return message;
 		} catch (IOException e) {
 
-			return "no message received";
+			return null;
 		}
 	}
 	

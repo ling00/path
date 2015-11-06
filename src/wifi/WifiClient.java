@@ -16,10 +16,11 @@ public class WifiClient {//client
 	
 	public WifiClient(int port) throws UnknownHostException, IOException{
 		this.port=port;
-		this.socket=new Socket("192.168.19.19",port);
+		//this.socket=new Socket("192.168.19.19",port);
+		this.socket=new Socket("localhost",port);
 		this.inputStream=new InputStreamReader(socket.getInputStream());
 		this.messagFromRpi=new BufferedReader(inputStream);
-		this.messageToRpi=new PrintStream(socket.getOutputStream());
+		this.messageToRpi=new PrintStream (socket.getOutputStream());
 	}
 
 	public void sendMessageToRpi(String message){
